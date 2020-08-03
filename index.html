@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Reveal Sample</title>
+<script>
+function myFunction() {
+ //   window.open("module01/index.html", "mywindow()", "location=1,status=0,scrollbars=0,width=1024,height=700");
+	window.open("module01/index.html", "_self", "location=1,status=0,scrollbars=0,width=1024,height=700");
+}
+
+var apiHandle = null;
+
+function getAPIHandle() {
+
+if (apiHandle == null)    {
+
+apiHandle = getAPI();
+
+}
+
+return apiHandle;
+
+}
+
+function getAPI() {
+
+var theAPI = findAPI(window);
+
+if ((theAPI == null) && (window.opener != null) && (typeof(window.opener) != "undefined"))    {
+
+theAPI = findAPI(window.opener);
+
+}
+
+if (theAPI == null)  {
+
+message("Unable to find an API adapter");
+
+}
+
+return theAPI
+
+}
+
+function findAPI(win) {
+
+var findAPITries = 0;
+
+while ((win.API == null) && (win.parent != null) && (win.parent != win))    {
+
+findAPITries++;
+
+// Note: 7 is an arbitrary number, but should be more than sufficient
+
+if (findAPITries > 7)
+
+{
+
+message("Error finding API -- too deeply nested.");
+
+return null;
+
+}
+
+win = win.parent;
+
+}
+
+return win.API;
+
+}
+
+//Function to set a value in the LMS
+
+function SetValue(name, value) {
+
+var api = getAPIHandle();
+
+return api.LMSSetValue(name, value);
+
+}
+
+//Function to retrieve a value from the lms
+
+function Getvalue(name) {
+
+var api = getAPIHandle();
+
+return api.LMSGetValue(name);
+
+}
+
+//The following 4 lines handle our actions for this example
+
+// get the API, Initialize the LMS, retrieve a value, set a value
+
+var api = getAPIHandle();
+
+api.LMSInitialize("");
+
+// alert(api.LMSGetValue("cmi.core.student_name"));
+
+api.LMSSetValue("cmi.core.lesson_status","completed");
+
+api.LMSFinish("");
+
+</script>
+</head>
+
+<body onload="myFunction()">
+</body>
+</html>

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'proximanova_regular';
+    src:url('../proximanova_regular/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../proximanova_regular/proximanova-regular-webfont.woff2') format('woff2'),
+        url('../proximanova_regular/proximanova-regular-webfont.woff') format('woff'),
+        url('../proximanova_regular/proximanova-regular-webfont.ttf') format('truetype'),
+        url('../proximanova_regular/proximanova-regular-webfont.svg#proxima_novaregular') format('svg');
+    color: #333333 !important;
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
